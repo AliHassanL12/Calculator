@@ -31,4 +31,7 @@ function operate(num1, num2, operator){
     }
 }
 
-console.log(operate(2,3, "/"));
+//display populated with random numbers 
+
+const display = document.querySelector(".display")
+display.textContent = "139";
