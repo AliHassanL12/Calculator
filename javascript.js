@@ -32,15 +32,25 @@ function operate(num1, num2, operator){
 }
 
 
-const display = document.querySelector(".display")
+const display = document.querySelector(".display");
+const header = document.querySelector(".header");
 display.textContent = 0;
 
 let btnClicked = document.querySelectorAll(".button");
 
 btnClicked.forEach(button => {
     button.addEventListener("click", function() {
-        storeNum = button.textContent;
-        storeNum += display.textContent;
-        display.textContent = storeNum;
+        display.textContent = "";
+        let storeNumber = button.textContent
+        header.textContent += storeNumber;
+        display.textContent += storeNumber;
     }) 
 });
+
+let operators = document.querySelectorAll(".operator");
+
+operators.forEach(operator => {
+    operator.addEventListener("click", function() {
+        header.textContent += operator.textContent;
+    })
+})
