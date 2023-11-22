@@ -31,7 +31,16 @@ function operate(num1, num2, operator){
     }
 }
 
-//display populated with random numbers 
 
 const display = document.querySelector(".display")
-display.textContent = "139";
+display.textContent = 0;
+
+let btnClicked = document.querySelectorAll(".button");
+
+btnClicked.forEach(button => {
+    button.addEventListener("click", function() {
+        storeNum = button.textContent;
+        storeNum += display.textContent;
+        display.textContent = storeNum;
+    }) 
+});
