@@ -36,53 +36,40 @@ function operate(num1, num2, operator){
 const display = document.querySelector(".display");
 const buttons = document.querySelectorAll(".button");
 const operations = document.querySelectorAll(".operator");
-const header = document.querySelector(".header");
+const equal = document.querySelector(".equal");
 
 display.textContent = 0;
-let num1= "";
-let num2= "";
+let num1 = "";
+let num2 = "";
 let op = "";
-let newResult = 0;
 let result = 0;
-let isFirstNum = false;
-let isSecondNum = false;
+isFirstNumDone = false;
 
 function populateDisplay(){
     if (display.textContent == 0){
         display.textContent = " ";
     }
-    if (isFirstNum == false){
-        num1 += this.textContent;
-        display.textContent = num1;
-    }
-    else if (isFirstNum == true && isSecondNum == false){
-        num2 += this.textContent;
-        display.textContent =  num2;
-    }
-    else {
+    if (isFirstNumDone == true){
         num2 += this.textContent;
         display.textContent = num2;
+    }
+    else {
+        num1 += this.textContent;
+        display.textContent = num1;
     }
 }
 
 function checkOperation(){
-    if (isFirstNum == false && isSecondNum == false){
+    if (isFirstNumDone == false){
         op = this.textContent;
-        isFirstNum = true;
+        isFirstNumDone = true;
     }
-    else if (isFirstNum == true && isSecondNum == false){
+    else {
         result = operate(num1, num2, op);
-        display.textContent = result;
-        num1 = result;
-        isSecondNum = true;
-        num2="";
-    }
-    else if (isFirstNum == true && isSecondNum == true){
         op = this.textContent;
-        console.log(op);
-        result = operate(result, num2, op);
-        display.textContent = result;
+        num1 = result;
         num2 = "";
+        display.textContent = result;
     }
 }
 
@@ -93,4 +80,12 @@ operations.forEach(operation => {
 
 buttons.forEach(button => {
     button.addEventListener("click", populateDisplay);
+});
+
+equal.addEventListener("click", function() {
+    result = operate(num1, num2, op);
+    num1 = result;
+    num2 = "";
+    isFirstNumDone = false;
+    display.textContent = result;
 });
