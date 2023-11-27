@@ -11,6 +11,9 @@ function multiplication(a,b){
 }
 
 function division(a,b){
+    if (a == 0 || b == 0){
+        return "ERROR";
+    }
     return Math.round(a* 100.0 /b) / 100;
 }
 
@@ -37,6 +40,7 @@ const display = document.querySelector(".display");
 const buttons = document.querySelectorAll(".button");
 const operations = document.querySelectorAll(".operator");
 const equal = document.querySelector(".equal");
+const clear = document.querySelector(".clear");
 
 display.textContent = 0;
 let num1 = "";
@@ -88,4 +92,13 @@ equal.addEventListener("click", function() {
     num2 = "";
     isFirstNumDone = false;
     display.textContent = result;
+});
+
+clear.addEventListener("click", function(){
+    display.textContent = 0;
+    num1 = "";
+    num2 = "";
+    op = "";
+    result = 0;
+    isFirstNumDone = false;
 });
